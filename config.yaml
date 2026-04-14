@@ -1,0 +1,43 @@
+site:
+  name: "我的主页"
+  avatar: "奶牛猫头像.png"
+  description: "欢迎来到我的个人主页"
+
+nav:
+  - category: "首页"
+    category_id: "home"
+    items: 
+      - name: "博客"
+        url: "https://blog.dongyue12.cn"
+        icon: "blog"
+        description: "我的个人博客"
+      - name: "文档站"
+        url: "https://document.dongyue12.cn"
+        icon: "docs"
+        description: "技术文档与笔记"
+      - name: "邮箱"
+        url: "mailto:2436847447@qq.com"
+        icon: "email"
+
+  - category: "博客"
+    category_id: "blog"
+    items:
+      - name: "备用博客"
+        url: "https://gmeek.dongyue12.cn"
+        icon: "blog"
+        description: "Gmeek 博客"
+
+      - name: "备用博客"
+        url: "https://dongyue12.github.io/blog/"
+        icon: "blog"
+        description: "我自己用ai研究的博客"
+        
+
+  - category: "其他"
+    category_id: "other"
+    items:
+      - name: "图床"
+        url: "https://img.dongyue12.cn"
+        icon: "img"
+        description: "一个由github搭建的图床"
+      
