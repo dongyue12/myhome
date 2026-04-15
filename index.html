@@ -4,50 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>我的主页</title>
+  <meta name="description" content="一个简洁的个人主页，集中展示博客、文档与常用链接。">
+  <meta name="theme-color" content="#f5efe6">
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <!-- 添加favicon.ico -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     :root {
-      --bg-gradient-1: #667eea;
-      --bg-gradient-2: #764ba2;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --card-shadow: rgba(0, 0, 0, 0.3);
-      --text-primary: #333;
-      --text-secondary: #666;
-      --text-muted: #888;
-      --link-bg: #f8f9fa;
-      --link-hover-bg: #fff;
-      --link-border: #667eea;
-      --link-shadow: rgba(102, 126, 234, 0.2);
-      --icon-gradient-1: #667eea;
-      --icon-gradient-2: #764ba2;
-      --social-bg: #f0f0f0;
-      --social-icon: #666;
-      --border-color: #eee;
-      --toggle-bg: #f0f0f0;
-      --toggle-icon: #666;
+      --bg-gradient-1: #f3ecdf;
+      --bg-gradient-2: #d9e6f2;
+      --bg-mesh: rgba(185, 121, 77, 0.12);
+      --card-bg: rgba(255, 252, 247, 0.86);
+      --card-shadow: rgba(69, 50, 27, 0.18);
+      --text-primary: #2c241d;
+      --text-secondary: #5f5144;
+      --text-muted: #8a7767;
+      --link-bg: rgba(255, 255, 255, 0.8);
+      --link-hover-bg: rgba(255, 255, 255, 0.98);
+      --link-border: #c46f38;
+      --link-shadow: rgba(196, 111, 56, 0.18);
+      --icon-gradient-1: #d88b4f;
+      --icon-gradient-2: #aa5a32;
+      --social-bg: rgba(255, 255, 255, 0.8);
+      --social-icon: #6c5949;
+      --border-color: rgba(119, 87, 58, 0.14);
+      --toggle-bg: rgba(255, 255, 255, 0.85);
+      --toggle-icon: #6c5949;
+      --focus-ring: rgba(196, 111, 56, 0.28);
     }
 
     [data-theme="dark"] {
-      --bg-gradient-1: #1a1a2e;
-      --bg-gradient-2: #16213e;
-      --card-bg: rgba(30, 30, 46, 0.95);
-      --card-shadow: rgba(0, 0, 0, 0.5);
-      --text-primary: #e0e0e0;
-      --text-secondary: #b0b0b0;
-      --text-muted: #888;
-      --link-bg: #2a2a3e;
-      --link-hover-bg: #3a3a4e;
-      --link-border: #667eea;
-      --link-shadow: rgba(102, 126, 234, 0.3);
-      --icon-gradient-1: #667eea;
-      --icon-gradient-2: #764ba2;
-      --social-bg: #2a2a3e;
-      --social-icon: #b0b0b0;
-      --border-color: #3a3a4e;
-      --toggle-bg: #2a2a3e;
-      --toggle-icon: #b0b0b0;
+      --bg-gradient-1: #16181d;
+      --bg-gradient-2: #243648;
+      --bg-mesh: rgba(245, 173, 98, 0.1);
+      --card-bg: rgba(20, 24, 31, 0.82);
+      --card-shadow: rgba(0, 0, 0, 0.42);
+      --text-primary: #f4ede5;
+      --text-secondary: #d2c1ae;
+      --text-muted: #a89582;
+      --link-bg: rgba(35, 43, 55, 0.84);
+      --link-hover-bg: rgba(48, 59, 74, 0.96);
+      --link-border: #f0a661;
+      --link-shadow: rgba(240, 166, 97, 0.24);
+      --icon-gradient-1: #f0a661;
+      --icon-gradient-2: #ca6b42;
+      --social-bg: rgba(35, 43, 55, 0.84);
+      --social-icon: #d2c1ae;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --toggle-bg: rgba(35, 43, 55, 0.84);
+      --toggle-icon: #f4ede5;
+      --focus-ring: rgba(240, 166, 97, 0.3);
     }
 
     * {
@@ -57,34 +63,51 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+      font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, var(--bg-mesh), transparent 34%),
+        radial-gradient(circle at bottom right, var(--bg-mesh), transparent 28%),
+        linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      transition: background 0.3s ease;
+      padding: 24px;
+      color: var(--text-primary);
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .container {
       background: var(--card-bg);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 480px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 28px;
+      padding: 36px;
+      max-width: 560px;
       width: 100%;
       box-shadow: 0 20px 60px var(--card-shadow);
-      text-align: center;
       position: relative;
-      transition: background 0.3s ease;
+      overflow: hidden;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent);
+      pointer-events: none;
     }
 
     .theme-toggle {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
+      top: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: var(--toggle-bg);
       border: none;
@@ -93,10 +116,11 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
+      z-index: 1;
     }
 
     .theme-toggle:hover {
-      transform: scale(1.1);
+      transform: translateY(-1px) scale(1.03);
     }
 
     .theme-toggle svg {
@@ -107,17 +131,19 @@
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--icon-gradient-1) 0%, var(--icon-gradient-2) 100%);
-      margin: 0 auto 20px;
+      margin: 0 auto 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 40px;
+      font-size: 42px;
+      font-weight: 700;
       color: white;
       overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
     }
 
     .avatar img {
@@ -127,17 +153,22 @@
     }
 
     .site-name {
-      font-size: 28px;
-      font-weight: 700;
+      font-size: clamp(28px, 5vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
       color: var(--text-primary);
       margin-bottom: 8px;
+      text-align: center;
       transition: color 0.3s ease;
     }
 
     .description {
       color: var(--text-secondary);
-      font-size: 14px;
-      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0 auto 24px;
+      max-width: 34ch;
+      text-align: center;
       transition: color 0.3s ease;
     }
 
@@ -145,7 +176,7 @@
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 25px;
+      margin-bottom: 26px;
       flex-wrap: wrap;
     }
 
@@ -159,6 +190,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       border: 1px solid transparent;
+      user-select: none;
     }
 
     .nav-item:hover {
@@ -181,16 +213,6 @@
       display: block;
     }
 
-    .category-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 15px;
-      text-align: left;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
     .category-links {
       display: flex;
       flex-direction: column;
@@ -206,15 +228,14 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 30px;
     }
 
     .link-card {
       display: flex;
       align-items: center;
-      padding: 16px 20px;
+      padding: 16px 18px;
       background: var(--link-bg);
-      border-radius: 12px;
+      border-radius: 18px;
       text-decoration: none;
       color: var(--text-primary);
       transition: all 0.3s ease;
@@ -225,7 +246,7 @@
     .link-card:hover {
       background: var(--link-hover-bg);
       border-color: var(--link-border);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: 0 8px 20px var(--link-shadow);
     }
 
@@ -265,11 +286,12 @@
     .link-name {
       font-weight: 600;
       font-size: 16px;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .link-desc {
-      font-size: 12px;
+      font-size: 13px;
+      line-height: 1.5;
       color: var(--text-muted);
       transition: color 0.3s ease;
     }
@@ -278,6 +300,7 @@
       display: flex;
       justify-content: center;
       gap: 16px;
+      margin-top: 28px;
       padding-top: 20px;
       border-top: 1px solid var(--border-color);
       transition: border-color 0.3s ease;
@@ -312,6 +335,68 @@
     .loading {
       color: var(--text-secondary);
       padding: 40px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    button,
+    .nav-item,
+    .link-card,
+    .social-link {
+      outline: none;
+    }
+
+    button:focus-visible,
+    .nav-item:focus-visible,
+    .link-card:focus-visible,
+    .social-link:focus-visible {
+      box-shadow: 0 0 0 4px var(--focus-ring);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
+        align-items: flex-start;
+      }
+
+      .container {
+        padding: 24px 18px;
+        border-radius: 24px;
+        margin-top: 10px;
+      }
+
+      .theme-toggle {
+        top: 14px;
+        right: 14px;
+      }
+
+      .avatar {
+        width: 96px;
+        height: 96px;
+        font-size: 36px;
+      }
+
+      .link-card {
+        padding: 14px 15px;
+      }
+
+      .link-icon {
+        width: 36px;
+        height: 36px;
+        margin-right: 12px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -322,9 +407,9 @@
   </style>
 </head>
 <body>
-  <div class="container" id="app">
+  <main class="container" id="app">
     <div class="loading">加载中...</div>
-  </div>
+  </main>
 
   <script>
     const icons = {
@@ -338,14 +423,99 @@
       default: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>'
     };
 
+    const DEFAULT_CONFIG = {
+      site: {
+        name: '我的主页',
+        avatar: '',
+        description: '欢迎来到我的个人主页'
+      },
+      nav: [],
+      social: []
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]));
+    }
+
+    function slugify(value, fallback = 'section') {
+      const normalized = String(value ?? '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^\w\u4e00-\u9fa5-]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      return normalized || fallback;
+    }
+
+    function normalizeConfig(rawConfig) {
+      const config = rawConfig && typeof rawConfig === 'object' ? rawConfig : {};
+      const site = {
+        ...DEFAULT_CONFIG.site,
+        ...(config.site && typeof config.site === 'object' ? config.site : {})
+      };
+
+      const usedIds = new Set();
+      const nav = Array.isArray(config.nav) ? config.nav : [];
+      const normalizedNav = nav
+        .filter((section) => section && typeof section === 'object')
+        .map((section, index) => {
+          const baseId = slugify(section.category_id || section.category, `section-${index + 1}`);
+          let categoryId = baseId;
+          let suffix = 2;
+          while (usedIds.has(categoryId)) {
+            categoryId = `${baseId}-${suffix}`;
+            suffix += 1;
+          }
+          usedIds.add(categoryId);
+
+          const items = Array.isArray(section.items) ? section.items : [];
+          return {
+            category: String(section.category || `分组 ${index + 1}`),
+            category_id: categoryId,
+            items: items
+              .filter((item) => item && typeof item === 'object' && item.name && item.url)
+              .map((item) => ({
+                name: String(item.name),
+                url: String(item.url),
+                icon: String(item.icon || 'default'),
+                description: item.description ? String(item.description) : ''
+              }))
+          };
+        })
+        .filter((section) => section.items.length > 0);
+
+      const social = Array.isArray(config.social)
+        ? config.social
+            .filter((item) => item && typeof item === 'object' && item.name && item.url)
+            .map((item) => ({
+              name: String(item.name),
+              url: String(item.url),
+              icon: String(item.icon || 'default')
+            }))
+        : [];
+
+      return { site, nav: normalizedNav, social };
+    }
+
+    function getStoredTheme() {
+      return localStorage.getItem('theme');
+    }
+
     function getTheme() {
-      return localStorage.getItem('theme') || 
+      return getStoredTheme() ||
         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     }
 
-    function setTheme(theme) {
+    function setTheme(theme, persist = true) {
       document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
+      if (persist) {
+        localStorage.setItem('theme', theme);
+      }
     }
 
     function toggleTheme() {
@@ -360,6 +530,7 @@
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         btn.innerHTML = isDark ? icons.sun : icons.moon;
         btn.title = isDark ? '切换到亮色模式' : '切换到暗色模式';
+        btn.setAttribute('aria-label', btn.title);
       }
     }
 
@@ -377,32 +548,80 @@
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const yamlText = await response.text();
-        console.log('YAML content loaded:', yamlText);
-        const config = jsyaml.load(yamlText);
-        console.log('Parsed config:', config);
+        const config = normalizeConfig(jsyaml.load(yamlText));
         renderPage(config);
-        setTheme(getTheme());
+        setTheme(getTheme(), Boolean(getStoredTheme()));
         updateThemeIcon();
       } catch (error) {
-        console.error('Failed to load config:', error);
         document.getElementById('app').innerHTML = `
           <div class="loading">
             配置加载失败，请检查 config.yaml 文件<br>
-            错误信息: ${error.message}<br>
-            <small style="color: #999">请打开浏览器控制台查看详细信息</small>
+            错误信息: ${escapeHtml(error.message)}
           </div>
         `;
       }
     }
 
+    function getInitialCategory(nav) {
+      if (!nav.length) {
+        return '';
+      }
+
+      const hashCategory = window.location.hash.replace(/^#/, '');
+      if (hashCategory && nav.some((item) => item.category_id === hashCategory)) {
+        return hashCategory;
+      }
+
+      const storedCategory = localStorage.getItem('activeCategory');
+      if (storedCategory && nav.some((item) => item.category_id === storedCategory)) {
+        return storedCategory;
+      }
+
+      return nav[0].category_id;
+    }
+
+    function activateCategory(categoryId) {
+      const navItems = document.querySelectorAll('.nav-item');
+      const categorySections = document.querySelectorAll('.category-section');
+      const hasMatch = Array.from(navItems).some((item) => item.getAttribute('data-category') === categoryId);
+
+      if (!hasMatch) {
+        return;
+      }
+
+      navItems.forEach((item) => {
+        const isActive = item.getAttribute('data-category') === categoryId;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-selected', String(isActive));
+        item.setAttribute('tabindex', isActive ? '0' : '-1');
+      });
+
+      categorySections.forEach((section) => {
+        const isActive = section.getAttribute('data-category') === categoryId;
+        section.classList.toggle('active', isActive);
+        section.hidden = !isActive;
+      });
+
+      localStorage.setItem('activeCategory', categoryId);
+      if (window.location.hash !== `#${categoryId}`) {
+        history.replaceState(null, '', `#${categoryId}`);
+      }
+    }
+
     function renderPage(config) {
       const { site, social, nav } = config;
+      const activeCategory = getInitialCategory(nav);
+      document.title = site.name;
+      const descMeta = document.querySelector('meta[name="description"]');
+      if (descMeta && site.description) {
+        descMeta.setAttribute('content', site.description);
+      }
       
       // 渲染导航栏
       let navigationHtml = '';
       if (nav && nav.length > 0) {
         navigationHtml = nav.map((navItem, index) => 
-          `<div class="nav-item ${index === 0 ? 'active' : ''}" data-category="${navItem.category_id}">${navItem.category}</div>`
+          `<button class="nav-item ${navItem.category_id === activeCategory ? 'active' : ''}" type="button" role="tab" aria-selected="${navItem.category_id === activeCategory}" tabindex="${navItem.category_id === activeCategory ? '0' : '-1'}" data-category="${escapeHtml(navItem.category_id)}">${escapeHtml(navItem.category)}</button>`
         ).join('');
       }
 
@@ -415,37 +634,36 @@
               const email = extractEmail(item.url);
               if (email) {
                 return `
-                  <div class="link-card is-email">
+                  <div class="link-card is-email" role="group" aria-label="${escapeHtml(item.name)}">
                     <div class="link-icon">
                       ${icons[item.icon] || icons.email}
                     </div>
                     <div class="link-content">
-                      <div class="link-name">${item.name}</div>
-                      <div class="link-desc">${email}</div>
+                      <div class="link-name">${escapeHtml(item.name)}</div>
+                      <div class="link-desc">${escapeHtml(email)}</div>
                     </div>
                   </div>
                 `;
               }
               return `
-                <a href="${item.url}" class="link-card" target="_blank" rel="noopener">
+                <a href="${escapeHtml(item.url)}" class="link-card" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.name)}">
                   <div class="link-icon">
                     ${icons[item.icon] || icons.default}
                   </div>
                   <div class="link-content">
-                    <div class="link-name">${item.name}</div>
-                    ${item.description ? `<div class="link-desc">${item.description}</div>` : ''}
+                    <div class="link-name">${escapeHtml(item.name)}</div>
+                    ${item.description ? `<div class="link-desc">${escapeHtml(item.description)}</div>` : ''}
                   </div>
                 </a>
               `;
             }).join('');
             
             return `
-              <div class="category-section ${index === 0 ? 'active' : ''}" data-category="${navItem.category_id}">
-                <h2 class="category-title">${navItem.category}</h2>
+              <section class="category-section ${navItem.category_id === activeCategory ? 'active' : ''}" data-category="${escapeHtml(navItem.category_id)}" ${navItem.category_id === activeCategory ? '' : 'hidden'} role="tabpanel" aria-label="${escapeHtml(navItem.category)}">
                 <div class="category-links">
                   ${itemsHtml}
                 </div>
-              </div>
+              </section>
             `;
           }
           return '';
@@ -455,7 +673,7 @@
       let socialHtml = '';
       if (social && social.length > 0) {
         socialHtml = social.map(s => `
-          <a href="${s.url}" class="social-link" target="_blank" rel="noopener" title="${s.name}">
+          <a href="${escapeHtml(s.url)}" class="social-link" target="_blank" rel="noopener noreferrer" title="${escapeHtml(s.name)}" aria-label="${escapeHtml(s.name)}">
             ${icons[s.icon] || icons.default}
           </a>
         `).join('');
@@ -466,12 +684,12 @@
           ${icons.moon}
         </button>
         <div class="avatar">
-          ${site.avatar ? `<img src="${site.avatar}" alt="avatar">` : site.name.charAt(0)}
+          ${site.avatar ? `<img src="${escapeHtml(site.avatar)}" alt="${escapeHtml(site.name)} 头像" loading="lazy" decoding="async">` : escapeHtml(site.name.charAt(0))}
         </div>
-        <h1 class="site-name">${site.name}</h1>
-        ${site.description ? `<p class="description">${site.description}</p>` : ''}
+        <h1 class="site-name">${escapeHtml(site.name)}</h1>
+        ${site.description ? `<p class="description">${escapeHtml(site.description)}</p>` : ''}
         
-        ${navigationHtml ? `<div class="navigation">${navigationHtml}</div>` : ''}
+        ${navigationHtml ? `<nav class="navigation" aria-label="分类导航" role="tablist">${navigationHtml}</nav>` : ''}
 
         <div class="links">
           ${linksHtml}
@@ -486,26 +704,43 @@
       const navItems = document.querySelectorAll('.nav-item');
       navItems.forEach(item => {
         item.addEventListener('click', function() {
-          // 移除所有导航项的active类
-          navItems.forEach(nav => nav.classList.remove('active'));
-          // 添加当前导航项的active类
-          this.classList.add('active');
+          activateCategory(this.getAttribute('data-category'));
+        });
 
-          // 获取选中的类别
-          const category = this.getAttribute('data-category');
+        item.addEventListener('keydown', function(event) {
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') {
+            return;
+          }
 
-          // 切换分类显示
-          const categorySections = document.querySelectorAll('.category-section');
-          categorySections.forEach(section => {
-            if (section.getAttribute('data-category') === category) {
-              section.classList.add('active');
-            } else {
-              section.classList.remove('active');
-            }
-          });
+          const items = Array.from(navItems);
+          const currentIndex = items.indexOf(this);
+          const nextIndex = event.key === 'ArrowRight'
+            ? (currentIndex + 1) % items.length
+            : (currentIndex - 1 + items.length) % items.length;
+
+          items[nextIndex].focus();
+          activateCategory(items[nextIndex].getAttribute('data-category'));
         });
       });
+
+      if (activeCategory) {
+        activateCategory(activeCategory);
+      }
     }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!getStoredTheme()) {
+        setTheme(getTheme(), false);
+        updateThemeIcon();
+      }
+    });
+
+    window.addEventListener('hashchange', () => {
+      const category = window.location.hash.replace(/^#/, '');
+      if (category) {
+        activateCategory(category);
+      }
+    });
 
     loadConfig();
   </script>
